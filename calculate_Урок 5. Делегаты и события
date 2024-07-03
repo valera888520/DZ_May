@@ -1,0 +1,59 @@
+using System;
+
+namespace Calculator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            double number1, number2, result;
+            char action;
+
+            while (true)
+            {
+                Console.Write("Ввод первого числа: ");
+                if (!double.TryParse(Console.ReadLine(), out number1))
+                {
+                    Console.WriteLine("Ошибка ввода. Пожалуйста, введите число.");
+                    continue;
+                }
+
+                Console.Write("Выбор действия (+, -, *, /): ");
+                action = Convert.ToChar(Console.ReadLine());
+
+                Console.Write("Ввод второго числа: ");
+                if (!double.TryParse(Console.ReadLine(), out number2))
+                {
+                    Console.WriteLine("Ошибка ввода. Пожалуйста, введите число.");
+                    continue;
+                }
+
+                switch (action)
+                {
+                    case '+':
+                        result = number1 + number2;
+                        break;
+                    case '-':
+                        result = number1 - number2;
+                        break;
+                    case '*':
+                        result = number1 * number2;
+                        break;
+                    case '/':
+                        if (number2 == 0)
+                        {
+                            Console.WriteLine("Деление на ноль невозможно!");
+                            continue;
+                        }
+                        result = number1 / number2;
+                        break;
+                    default:
+                        Console.WriteLine("Ошибка ввода. Пожалуйста, выберите действие (+, -, * или /).");
+                        continue;
+                }
+
+                Console.WriteLine($"Результат: {result}");
+            }
+        }
+    }
+}
